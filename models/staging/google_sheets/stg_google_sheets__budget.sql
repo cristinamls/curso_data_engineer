@@ -1,4 +1,3 @@
-
 {{
   config(
     materialized='view'
@@ -16,7 +15,8 @@ renamed_casted AS (
         , product_id
         , quantity
         , month
-        , _fivetran_synced AS date_load
+        -- , _fivetran_synced AS date_load
+        , convert_timezone('UTC',_fivetran_synced) AS date_load
     FROM src_budget
     )
 
