@@ -259,4 +259,10 @@ models:
         data_type: timestamp_tz
         description: ""
       
+      - name: updated_at_utc
+        data_type: timestamp_tz
+        description: ""
 
+      - name: created_at_utc
+        data_type: timestamp_tz
+        description: ""

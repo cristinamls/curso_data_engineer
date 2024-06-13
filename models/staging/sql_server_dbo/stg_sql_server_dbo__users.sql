@@ -18,10 +18,14 @@ renamed_casted AS (
         , last_name
         , phone_number
         , total_orders
-        , updated_at
         , user_id
         , _fivetran_deleted
+        , updated_at
         , _fivetran_synced AS date_load
+        -- uso de macro convertir fecha utc
+        , {{ to_utc('updated_at') }} as updated_at_utc
+        -- conversion fecha sin macro
+        , convert_timezone('UTC',created_at) as created_at_utc
         
     FROM src_users
     )

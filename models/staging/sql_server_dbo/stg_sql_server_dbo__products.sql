@@ -13,10 +13,11 @@ renamed_casted AS (
     SELECT
         inventory
         , name
-        , price
+        , price AS price_dollar
         , product_id
         , _fivetran_deleted
-        , _fivetran_synced AS date_load
+        --, _fivetran_synced AS date_load
+        , convert_timezone('UTC',_fivetran_synced) AS date_load
     FROM src_products
     )
 
