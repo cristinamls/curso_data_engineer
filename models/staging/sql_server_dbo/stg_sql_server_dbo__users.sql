@@ -14,6 +14,9 @@ renamed_casted AS (
         address_id
         , created_at
         , email
+        -- Columna para comprobar validacion email en el models/marts/core/_core_unit_test.yml
+        -- {email: ekollaschek2q@tuttocitta.it, is_valid_email_address: true}
+        , coalesce (regexp_like(email, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$')= true,false) as is_valid_email_address
         , first_name
         , last_name
         , phone_number

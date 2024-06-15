@@ -5,14 +5,24 @@ models:
     description: ""
     columns:
       - name: month
+        tests:
+          - not_null
         data_type: date
         description: ""
 
       - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_sql_server_dbo__products')
+              field: product_id
         data_type: varchar
         description: ""
 
       - name: quantity
+        tests:
+          - not_null
+          - positive_values
         data_type: number
         description: ""
 
@@ -21,5 +31,8 @@ models:
         description: ""
 
       - name: _row
+        tests:
+          - not_null
+          - unique
         data_type: number
         description: ""
