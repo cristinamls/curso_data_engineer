@@ -1,4 +1,5 @@
 unit_tests:
+
   - name: test_is_valid_email
     description: "Check if email is valid"
     model: stg_sql_server_dbo__users
@@ -15,3 +16,20 @@ unit_tests:
         - {email: sdivers2p@msu.edu, is_valid_email_address: true}
         - {email: wheinecke2l@ebay.com, is_valid_email_address: true}
         - {email: fail_email, is_valid_email_address: false}
+
+  - name: test_is_valid_phone_number
+    description: "Check if phone number is valid"
+    model: stg_sql_server_dbo__users
+    given:
+      - input: source('sql_server_dbo', 'users')
+        rows:
+          - {phone_number: '123-456-7890'}
+          - {phone_number: '234-567-8901'}
+          - {phone_number: '345-678-9012'}
+          - {phone_number: 'fail_phone'}
+    expect:
+      rows:
+        - {phone_number: '123-456-7890', is_valid_phone_number: true}
+        - {phone_number: '234-567-8901', is_valid_phone_number: true}
+        - {phone_number: '345-678-9012', is_valid_phone_number: true}
+        - {phone_number: 'fail_phone', is_valid_phone_number: false}

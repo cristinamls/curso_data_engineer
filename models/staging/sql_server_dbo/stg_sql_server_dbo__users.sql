@@ -20,6 +20,7 @@ renamed_casted AS (
         , first_name
         , last_name
         , phone_number
+        , coalesce(regexp_like(phone_number, '^\\d{3}-\\d{3}-\\d{4}$') = true, false) as is_valid_phone_number
         , total_orders
         , user_id
         , _fivetran_deleted
