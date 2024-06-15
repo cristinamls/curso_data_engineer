@@ -1,1 +1,0 @@
--- Este va ser nuestro segundo fichero de SQL
