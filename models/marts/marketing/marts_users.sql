@@ -8,9 +8,9 @@ src_address AS (
     FROM {{ref('dim_addresses')}}
 ),
 
-src_users_aggregations AS (
+src_users_group_by AS (
     SELECT * 
-    FROM {{ref('int_users_aggregations')}}
+    FROM {{ref('int_users_group_by')}}
 ),
 
 
@@ -25,17 +25,17 @@ renamed_casted AS (
         u.updated_at,
         u.updated_at_utc,
         u.created_at_utc,
-        -- a.address,
-        -- a.zipcode,
-        -- a.state,
-        -- a.country,
-        ua.total_orders,
-        ua.total_products,
-        ua.different_products
-    FROM src_users u
-    LEFT JOIN src_users_aggregations ua ON ua.user_id = u.user_id
-    -- LEFT JOIN src_address a ON u.address_id = a.address_id
-
+        a.address,
+        a.zipcode,
+        a.state,
+        a.country,
+        ugb.total_orders,
+        ugb.total_products,
+        ugb.different_products
+    FROM 
+        src_users u
+            LEFT JOIN src_users_group_by ugb ON ugb.user_id = u.user_id
+            LEFT JOIN src_address a ON u.address_id = a.address_id
 )
 
 SELECT * FROM renamed_casted

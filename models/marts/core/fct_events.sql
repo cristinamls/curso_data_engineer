@@ -1,0 +1,24 @@
+{{ 
+    config(
+        materialized='view'
+    ) 
+}}
+
+WITH 
+
+src_events AS (
+
+    SELECT * 
+    FROM {{ ref('stg_sql_server_dbo__events') }} 
+
+),
+
+renamed_casted AS (
+
+    SELECT *
+    FROM src_events
+    
+
+)
+SELECT * 
+FROM renamed_casted

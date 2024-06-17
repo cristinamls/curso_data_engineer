@@ -8,6 +8,7 @@ renamed_casted AS (
         user_id,
         first_name,
         last_name,
+        address_id,
         phone_number,
         email,
         updated_at,
