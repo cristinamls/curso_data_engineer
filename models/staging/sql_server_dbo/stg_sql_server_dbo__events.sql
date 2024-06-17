@@ -11,16 +11,16 @@ WITH src_events AS (
 
 renamed_casted AS (
     SELECT
-        created_at
+        convert_timezone('UTC', created_at) created_at
         , event_id
-        , event_type
-        , order_id
+        ,  md5(event_type) as event_type_id
+        , NULLIF(order_id, '') AS order_id
         , page_url
-        , product_id
+        , NULLIF(product_id , '' ) AS product_id
         , session_id
         , user_id
-        , _fivetran_deleted
-        , _fivetran_synced AS date_load
+        , coalesce(_fivetran_deleted, false) AS date_deleted
+        , convert_timezone('UTC',_fivetran_synced) AS _fivetran_synced
     FROM src_events
     )
 

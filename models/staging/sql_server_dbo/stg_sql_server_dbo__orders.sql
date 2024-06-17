@@ -7,7 +7,7 @@
 WITH
 src_orders AS (
     SELECT * 
-    FROM {{ source("sql_server_dbo", "orders") }}
+    FROM {{ source('sql_server_dbo', 'orders') }}
 ),
 
 renamed_casted AS (
@@ -17,11 +17,13 @@ renamed_casted AS (
         user_id,
         address_id,
         nullif(tracking_id, '') AS tracking_id,
+
         CASE
             WHEN shipping_service = ''
             THEN null
             ELSE {{ dbt_utils.generate_surrogate_key(["shipping_service"]) }}
         END AS shipping_service_id,
+        
         order_total AS order_total_dollars,
         order_cost AS order_cost_dollars,
         shipping_cost AS shipping_cost_dollars,
