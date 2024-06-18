@@ -1,3 +1,9 @@
+{{ 
+    config(
+        materialized='table'
+    ) 
+}}
+
 WITH src_users AS (
     SELECT * 
     FROM {{ref('stg_sql_server_dbo__users')}}
