@@ -113,6 +113,8 @@ Las macros son trozos de código (SQL + jinja) que pueden ser reutilizados tanta
 
 Herramienta que registra los cambios de una tabla mutable en el tiempo.
 
+El comando para ejecutar una instantánea es **dbt snapshot**.
+
 
 
 ---
