@@ -1,0 +1,17 @@
+/*Se ha creado un snapshot que ha usado una estrategia de timestamp para el campo ‘_fivetran_synced’ 
+indicando que la clave principal será el campo ‘_row. Al ejecutar el comando dbt snapshot, ha detectado que hemos 
+actualizado el campo por el que comparar a una fecha más alta y ha actualizado la columna dbt_valid_to y ha añadido un nuevo registro*/
+{% snapshot budget_snapshot %}
+
+{{
+    config(
+      target_schema='snapshots',
+      unique_key='_row',
+      strategy='timestamp',
+      updated_at='_fivetran_synced',
+    )
+}}
+
+select * from {{ source('google_sheets', 'budget') }}
+
+{% endsnapshot %}

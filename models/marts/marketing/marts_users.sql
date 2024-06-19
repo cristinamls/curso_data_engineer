@@ -13,6 +13,11 @@ src_users_group_by AS (
     FROM {{ref('int_users_group_by')}}
 ),
 
+src_events_users AS (
+    SELECT * 
+    FROM {{ref('int_events_group_by_users')}}
+),
+
 
 renamed_casted AS (
     SELECT DISTINCT
@@ -31,11 +36,16 @@ renamed_casted AS (
         a.country,
         ugb.total_orders,
         ugb.total_products,
-        ugb.different_products
+        ugb.different_products,
+        eu.checkout_amount,
+        eu.package_shipped_amount,
+        eu.add_to_cart_amount,
+        eu.page_view_amount
     FROM 
         src_users u
             LEFT JOIN src_users_group_by ugb ON ugb.user_id = u.user_id
             LEFT JOIN src_address a ON u.address_id = a.address_id
+            LEFT JOIN src_events_users eu ON eu.user_id = u.user_id
 )
 
 SELECT * FROM renamed_casted
