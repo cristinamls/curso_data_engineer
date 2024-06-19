@@ -37,6 +37,8 @@ Nuestro principal objetivo con este proyecto es establecer una arquitectura esca
   - **Propósito:** Repositorios optimizados para análisis específicos o departamentales.
   - **Proceso:** Creación de modelos dbt diseñados para responder a preguntas de negocio específicas, facilitando la generación de informes y análisis ad-hoc.
 
+![Captura de pantalla 2024-06-19 103138](https://github.com/cristinamls/curso_data_engineer/assets/170645478/676c2e9d-e2c9-4e4d-9b4e-57ecc031f2f0)
+
 ---
 
 #### 5. Tecnologías Clave ELT
@@ -53,6 +55,7 @@ Nuestro principal objetivo con este proyecto es establecer una arquitectura esca
 Database cargada en Snowflake, con datos que provienen de dos fuentes/sources: google_sheets y sql_server_db. 
 Los datos son distribuidos mediante un proceso de transformación y modelado en tres capas: bronze (datos crudos), silver (datos transformados y casteados) y gold (datos modelados en tablas de dimension y de hechos), que en dbt se corresponderan al directorio staging y el directorio marts. 
 
+![ERD_Supabase (1)](https://github.com/cristinamls/curso_data_engineer/assets/170645478/caf0ba6c-db70-4732-8fa8-62beb36c4931)
 
 La capa de staging es el directorio main de modelos en este proyecto dbt, en ella también se almacenará la capa base, los modelos base no son siempre necesarios.
 Los modelos intermedios son donde empezamos a aplicar la lógica de negocio y a unir los modelos de staging, por ejemplo, en int_users_group_by, agrupamos users con orders y orders_items para luego usarlo en marts.marketing.
@@ -89,9 +92,11 @@ Los test son pruebas para validar que los datos de nuestros modelos y sources so
 - unit_test_mail
 - unit_test_telefono
 
-
 En resumen, los test son piezas importantes para la consistencia y calidad de los datos. Si los datos no pasan satisfactoriamente los test definidos, no puede finalizarse el dbt build, teniendo que volver a reparar o depurar los datos.
 
+![Captura de pantalla 2024-06-19 102700](https://github.com/cristinamls/curso_data_engineer/assets/170645478/013116d9-b559-4304-9e01-93281c432aa6)
+
+![Captura de pantalla 2024-06-19 102835](https://github.com/cristinamls/curso_data_engineer/assets/170645478/5440ba3c-f40f-479f-b225-ecb3c904d061)
 
 ---
 
