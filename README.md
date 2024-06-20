@@ -103,7 +103,7 @@ En resumen, los test son piezas importantes para la consistencia y calidad de lo
 #### 8. Macros
 Las macros son trozos de código (SQL + jinja) que pueden ser reutilizados tantas veces sea necesario.
 
-- ConvertTimezone, macro que convierte la fecha '2000-01-01 00:00:00' a UTC Coordinated Universal Time timezone
+- ConvertTimezone, macro que convierte la fecha '2000-01-01 00:00:00' a UTC Coordinated Universal Time timezone.  (usado en stg_sql_server_dbo__users, stg_sql_server_dbo__promos, stg_sql_server_dbo__producto stg_sql_server_dbo__orders)
 - Date Spine, que existe dentro del paquete de dbt-utils existen macros (folder sql), esta macro genera una columna con una lista de fechas consecutivas en un período determinado. Esta macro se ha usado para construir la dimension tiempo.
 - Generate subrogate key, tambien dentro de las macros de dbt utils, usado por ejemplo para generar id cuando estaba vacio.
 - Event Types, es una macro que devuelve los distintos eventos, usada en la capa intermediate como int_events_group_by.sql
