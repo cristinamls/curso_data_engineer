@@ -58,7 +58,7 @@ Los datos son distribuidos mediante un proceso de transformación y modelado en 
 ![BBDD](https://github.com/cristinamls/curso_data_engineer/assets/170645478/caf0ba6c-db70-4732-8fa8-62beb36c4931)
 
 La capa de staging es el directorio main de modelos en este proyecto dbt, en ella también se almacenará la capa base, los modelos base no son siempre necesarios.
-Los modelos intermedios son donde empezamos a aplicar la lógica de negocio y a unir los modelos de staging, por ejemplo, en int_users_group_by, agrupamos users con orders y orders_items para luego usarlo en marts.marketing.
+Los modelos intermedios son donde empezamos a aplicar la lógica de negocio y a unir los modelos de staging, por ejemplo, en int_orders_group_by_users, agrupamos users con orders y orders_items para luego usarlo en marts.marketing.
  
 Marts es el otro directorio principal de modelos de un proyecto dbt. Los marts se basan tradicionalmente en entidades (tablas de dimensiones) y procesos de negocio (tablas de hechos), y se pueden agrupar por unidades de negocio (Márketing o Producto)
 

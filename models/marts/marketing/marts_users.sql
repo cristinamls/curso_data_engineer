@@ -8,9 +8,9 @@ src_address AS (
     FROM {{ref('dim_addresses')}}
 ),
 
-src_users_group_by AS (
+src_orders_users AS (
     SELECT * 
-    FROM {{ref('int_users_group_by')}}
+    FROM {{ref('int_orders_group_by_users')}}
 ),
 
 src_events_users AS (
@@ -43,7 +43,7 @@ renamed_casted AS (
         eu.page_view_amount
     FROM 
         src_users u
-            LEFT JOIN src_users_group_by ugb ON ugb.user_id = u.user_id
+            LEFT JOIN src_orders_users ugb ON ugb.user_id = u.user_id
             LEFT JOIN src_address a ON u.address_id = a.address_id
             LEFT JOIN src_events_users eu ON eu.user_id = u.user_id
 )

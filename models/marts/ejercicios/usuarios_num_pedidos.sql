@@ -5,7 +5,7 @@
 }}
 WITH src_users AS (
     SELECT * 
-    FROM {{ref('int_users_group_by')}}
+    FROM {{ref('int_orders_group_by_users')}}
 ),
 
 renamed_casted AS (
