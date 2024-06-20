@@ -1,5 +1,5 @@
-{{ config(materialized="view") }}
-
+{{ config(materialized="table") }}
+/* En el paquete de dbt-utils existen macros (folder sql) como date_spine, que genera una columna con una lista de fechas consecutivas en un período determinado */
 with
     date_spine as (
         {{

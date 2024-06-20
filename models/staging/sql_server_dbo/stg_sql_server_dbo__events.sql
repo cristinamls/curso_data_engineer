@@ -13,6 +13,7 @@ renamed_casted AS (
     SELECT
         convert_timezone('UTC', created_at) created_at
         , event_id
+        , event_type
         ,  md5(event_type) as event_type_id
         , NULLIF(order_id, '') AS order_id
         , page_url

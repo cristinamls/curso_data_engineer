@@ -21,6 +21,8 @@ sources:
         loaded_at_field: _fivetran_synced
         columns:
           - name: promo_id
+            tests: 
+              - not_null
           - name: discount
             tests:
               - positive_values
@@ -35,6 +37,11 @@ sources:
           - name: name
           - name: price
           - name: product_id
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('stg_sql_server_dbo__order_items')
+                  field: product_id  
           - name: _fivetran_deleted
           - name: _fivetran_synced
 
@@ -48,6 +55,9 @@ sources:
           - name: estimated_delivery_at
           - name: order_cost
           - name: order_id
+            tests:
+              - not_null
+              - unique
           - name: order_total
           - name: promo_id
           - name: shipping_cost
@@ -64,6 +74,10 @@ sources:
         columns:
           - name: order_id
           - name: product_id
+            tests:
+              - relationships:
+                  to: source('sql_server_dbo','products')
+                  field: product_id
           - name: quantity
           - name: _fivetran_deleted
           - name: _fivetran_synced
@@ -75,6 +89,8 @@ sources:
         columns:
           - name: address
           - name: address_id
+            tests:
+              - not_null
           - name: country
           - name: state
           - name: zipcode
@@ -112,6 +128,9 @@ sources:
           - name: total_orders
           - name: updated_at
           - name: user_id
+            tests:
+              - unique
+              - not_null
           - name: _fivetran_deleted
           - name: _fivetran_synced
            
